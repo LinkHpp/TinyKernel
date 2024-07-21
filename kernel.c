@@ -58,7 +58,7 @@ size_t terminal_column;
 uint8_t terminal_color;
 uint16_t* terminal_buffer;
 
-void terminal_initialize(void) 
+void terminal_initialize(void)
 {
 	terminal_row = 0;
 	terminal_column = 0;
@@ -86,8 +86,13 @@ void terminal_putentryat(char c, uint8_t color, size_t x, size_t y)
 void terminal_putchar(char c) 
 {
 	if (c == '\n'){
-			terminal_row++;
+		terminal_row++;
+		terminal_column = 0;
+		if (terminal_row == VGA_HEIGHT){
+			terminal_row = 0;
 			terminal_column = 0;
+		}
+		
 	}else{
 		terminal_putentryat(c, terminal_color, terminal_column, terminal_row);
 		if (++terminal_column == VGA_WIDTH) {
@@ -115,39 +120,7 @@ void kernel_main(void)
 	terminal_initialize();
 
 	/* Newline support is left as an exercise. */
-	terminal_writestring("Hello, kernel World!\nAdded support for newline!!!!");
-		terminal_writestring("Hello, kernel World!\nAdded support for newline!!!!");
-
-	terminal_writestring("Hello, kernel World!\nAdded support for newline!!!!");
-	terminal_writestring("Hello, kernel World!\nAdded support for newline!!!!");
-	terminal_writestring("Hello, kernel World!\nAdded support for newline!!!!");
-	terminal_writestring("Hello, kernel World!\nAdded support for newline!!!!");
-	terminal_writestring("Hello, kernel World!\nAdded support for newline!!!!");
-	terminal_writestring("Hello, kernel World!\nAdded support for newline!!!!");
-	terminal_writestring("Hello, kernel World!\nAdded support for newline!!!!");
-	terminal_writestring("Hello, kernel World!\nAdded support for newline!!!!");
-	terminal_writestring("Hello, kernel World!\nAdded support for newline!!!!");
-	terminal_writestring("Hello, kernel World!\nAdded support for newline!!!!");
-	terminal_writestring("Hello, kernel World!\nAdded support for newline!!!!");
-	terminal_writestring("Hello, kernel World!\nAdded support for newline!!!!");
-	terminal_writestring("Hello, kernel World!\nAdded support for newline!!!!");
-	terminal_writestring("Hello, kernel World!\nAdded support for newline!!!!");
-	terminal_writestring("Hello, kernel World!\nAdded support for newline!!!!");
-	terminal_writestring("Hello, kernel World!\nAdded support for newline!!!!");
-	terminal_writestring("Hello, kernel World!\nAdded support for newline!!!!");
-	terminal_writestring("Hello, kernel World!\nAdded support for newline!!!!");
-	terminal_writestring("Hello, kernel World!\nAdded support for newline!!!!");
-	terminal_writestring("Hello, kernel World!\nAdded support for newline!!!!");
-	terminal_writestring("Hello, kernel World!\nAdded support for newline!!!!");
-	terminal_writestring("Hello, kernel World!\nAdded support for newline!!!!");
-	terminal_writestring("Hello, kernel World!\nAdded support for newline!!!!");
-	terminal_writestring("Hello, kernel World!\nAdded support for newline!!!!");
-	terminal_writestring("Hello, kernel World!\nAdded support for newline!!!!");
-	terminal_writestring("Hello, kernel World!\nAdded support for newline!!!!");
-	terminal_writestring("Hello, kernel World!\nAdded support for newline!!!!");
-	terminal_writestring("Hello, kernel World!\nAdded support for newline!!!!");
-	terminal_writestring("Hello, kernel World!\nAdded support for newline!!!!");
-	terminal_writestring("FUCK YOU!!!!!!!!!!");
-
+	terminal_writestring("Hello Kernel!\n");
+	terminal_writestring("Now with newline support fixed!");
 
 }
