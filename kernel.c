@@ -114,13 +114,31 @@ void terminal_writestring(const char* data)
 	terminal_write(data, strlen(data));
 }
 
+void printf(const char* data){
+	terminal_writestring(data);
+
+	terminal_row++;
+		terminal_column = 0;
+		if (terminal_row == VGA_HEIGHT){
+			terminal_row = 0;
+			terminal_column = 0;
+		}
+
+}
+
 void kernel_main(void) 
 {
 	/* Initialize terminal interface */
 	terminal_initialize();
 
 	/* Newline support is left as an exercise. */
-	terminal_writestring("Hello Kernel!\n");
-	terminal_writestring("Now with newline support fixed!");
+	printf("Hello Kernel!");
+	printf("Now with newline support fixed!");
+	printf("Hola");
+	printf("Hello");
+	printf("Hello");
+	printf("Hello2");
+
+
 
 }
